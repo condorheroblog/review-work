@@ -1,0 +1,19 @@
+name: Build README
+on:
+  - push
+jobs:
+  generation:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code into the Go module directory
+        uses: actions/checkout@v2
+      - name: Execute script
+        run: bash script/auto.sh
+      - name: Commit and push if changed
+        run: | 
+          git config --local user.email "love2xinwei@gmail.com"
+          git config --local user.name "GitHub Robot"
+          git add -A
+          git commit -m "Updated README content" || exit 0
+          git push
+
