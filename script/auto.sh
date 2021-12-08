@@ -1,13 +1,12 @@
 #!/usr/bin/env bash
 
-PATH=company;
+REVIEW_COMPANY=company;
 
-DIRS=$(ls $PATH)
-for FILENAME in $DIRS
+REVIEW_DIRS=$(ls $REVIEW_COMPANY)
+for REVIEW_FILENAME in $REVIEW_DIRS
     do
-        TEMP="$TEMP - [$FILENAME](./$PATH/$FILENAME/PPT.md)\n";
+        REVIEW_TEMP="$REVIEW_TEMP - [$REVIEW_FILENAME](./$REVIEW_COMPANY/$REVIEW_FILENAME/PPT.md)\n";
     done
-echo $TEMP;
 
 READMEHEAD=$(cat << _EOF_
 \n
@@ -22,7 +21,11 @@ READMEHEAD=$(cat << _EOF_
 ### 🏠 [Homepage](https://github.com/condorheroblog/review-work)
 \n
 \n
-$TEMP
+$REVIEW_TEMP
 _EOF_);
 
 echo -e $READMEHEAD > README.md;
+
+REVIEW_NORMAL="$(printf '\033[0m')";
+REVIEW_YELLOW="$(printf '\033[33m')";
+echo -e "$REVIEW_YELLOW Success！$REVIEW_NORMAL $REVIEW_TEMP";
