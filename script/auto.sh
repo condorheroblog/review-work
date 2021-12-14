@@ -1,31 +1,73 @@
 #!/usr/bin/env bash
+# author: Condor Hero
+# set -x
 
-REVIEW_COMPANY=company;
+# check unbound variable error
+set -u # set -u = set -o nounset
 
-REVIEW_DIRS=$(ls $REVIEW_COMPANY)
-for REVIEW_FILENAME in $REVIEW_DIRS
+# check command not found
+set -e
+
+# generate ol
+function OL_ITEM_LIST() {
+    local REVIEW_DIRS="${1}/*";
+    local REVIEW_TEMP;
+    for REVIEW_FILENAME in $REVIEW_DIRS
+        do
+            if [[ "$1" == "share" ]]
+            then
+                local HYPE_LINK_TITLE=$(echo "${REVIEW_FILENAME/"${1}/"/}" | cut -d "." -f 1);
+                REVIEW_TEMP+=" - [$HYPE_LINK_TITLE](./$REVIEW_FILENAME)\n";
+            else
+                REVIEW_TEMP+=" - ["${REVIEW_FILENAME/"${1}/"/}"](./$REVIEW_FILENAME/PPT.md)\n";
+            fi
+        done
+    echo $REVIEW_TEMP
+}
+
+REVIEW_DIRS_ARR=(
+    company
+    share
+);
+
+# show content
+REVIEW_CONTENT_ARR=(
+    ""
+    ""
+);
+
+for REVIEW_DIR_NAME in "${REVIEW_DIRS_ARR[@]}"
     do
-        REVIEW_TEMP="$REVIEW_TEMP - [$REVIEW_FILENAME](./$REVIEW_COMPANY/$REVIEW_FILENAME/PPT.md)\n";
+        case $REVIEW_DIR_NAME in
+           company )
+                REVIEW_CONTENT_ARR[0]=$(OL_ITEM_LIST $REVIEW_DIR_NAME) ;;
+            share )
+                REVIEW_CONTENT_ARR[1]=$(OL_ITEM_LIST $REVIEW_DIR_NAME) ;;
+            * )
+                echo "Condition mismatch" ;;
+        esac
     done
 
-READMEHEAD=$(cat << _EOF_
-\n
-<h1 align="center">review-work 👋</h1>\n
-
-<p align="center">\n
-	\t<p align="center">\n
-		\t\t<em>一些工作的总结和思考🤔</em>\n
-	\t</p>\n
-</p>\n
-\n
-### 🏠 [Homepage](https://github.com/condorheroblog/review-work)
-\n
-\n
-$REVIEW_TEMP
-_EOF_);
+# ${BASH_SOURCE%/*} = __dirname
+source "${BASH_SOURCE%/*}/template-readme.sh";
 
 echo -e $READMEHEAD > README.md;
 
-REVIEW_NORMAL="$(printf '\033[0m')";
-REVIEW_YELLOW="$(printf '\033[33m')";
-echo -e "$REVIEW_YELLOW Success！$REVIEW_NORMAL $REVIEW_TEMP";
+CHALK_NORMAL="$(printf '\033[39m')";
+CHALK_YELLOW="$(printf '\033[93m')";
+CHALK_BLUE="$(printf '\033[94m')";
+CHALK_CYAN="$(printf '\033[96m')";
+
+LOG=$(
+cat << _EOF_
+        \n
+        $CHALK_CYAN ${REVIEW_CONTENT_ARR[0]} $CHALK_NORMAL
+        \n
+        $CHALK_BLUE ${REVIEW_CONTENT_ARR[1]}  $CHALK_BLUE
+        \n
+        $CHALK_YELLOW Success！$CHALK_NORMAL
+        \n
+_EOF_
+);
+
+echo -e $LOG;
