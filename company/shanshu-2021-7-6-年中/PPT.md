@@ -13,7 +13,7 @@ footer: 杉数科技
 paginate: true
 style: |
   section {
-    background-color: transparent;
+    background-color: #1f1f1f;
   }
 
 ---
