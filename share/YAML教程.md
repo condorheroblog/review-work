@@ -29,7 +29,18 @@ style: |
 
 ---
 
-## <!--fit--> YAML
+## <!--fit--> 快速入门
+
+---
+
+YAML 最基础的三个部分：
+
+1. mappings (hashes/dictionaries)
+2. sequences (arrays/lists)
+3. scalars (strings/numbers)
+---
+![bg fit](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b0eb7e6ea1114babbc54b1a572d35400~tplv-k3u1fbpfcp-watermark.image?)
+---
 
 ---
 
