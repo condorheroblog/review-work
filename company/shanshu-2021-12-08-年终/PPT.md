@@ -15,8 +15,35 @@ style: |
   section {
     background-color: #1f1f1f;
   }
-
 ---
+
+<style>
+  /* https://github.com/marp-team/marpit/issues/137#issuecomment-524175560 */
+  section.column {
+    overflow: visible;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 110px auto;
+    grid-template-areas: 
+        "slideheading slideheading"
+        "leftpanel rightpanel";
+  }
+  
+  section.column h3, 
+  section.column .ldiv, 
+  section.column .rdiv {
+    border: 1.5pt dashed dimgray;
+    padding: 0 25pt;
+  }
+  section.column h3 {
+      grid-area: slideheading;
+      line-height: 110px;
+      font-size: 50px;
+      text-align: center;
+  }
+  section.column .ldiv { grid-area: leftpanel; }
+  section.column .rdiv { grid-area: rightpanel; }
+</style>
 
 ![bg left:40% 80%](../../images/shanshu-logo.png)
 
@@ -26,7 +53,44 @@ style: |
 
 ---
 
-# <!--fit--> 回顾过去
+目录
+
+- 第一部分 简述今年的主要工作重心 
+
+- 第二部分 做了哪些具体的事情
+
+- 第三部分 问题和遗憾
+
+- 第四部分 自我评定
+
+- 第五部分 明年的工作计划
+
+---
+
+# <!--fit-->工作重心
+
+---
+
+### 工作重心
+<!-- _class: column -->
+
+<div class=ldiv>
+
+#### 去年
+  - 六国
+  - 技术的全面升级
+</div>
+
+<div class=rdiv>
+
+#### 今年
+  - 好丽友二期和三期
+  - 伴随技术升级的项目规范化
+  - 知识布道者
+</div>
+
+---
+# <!--fit--> 做了哪些事
 
 ---
 
@@ -63,8 +127,23 @@ style: |
 
 ---
 
-# <!--fit--> 展望未来
+# 问题和遗憾
 
+- 初始和新产品经理协作不顺畅
+- 技术架构更新未达到预期
+---
+# 自我评定
+
+符合自己的成长预期，偏向满意。
+
+1. 参与好丽友项目没有任何延期和重大 bug
+2. 技术持续提升
+3. 学习的技术积极传播到项目成员中去
+4. 心智更加成熟，一个良好靠谱的合作者。
+
+---
+
+# <!--fit--> 展望未来
 ---
 
 # 流程化规范化的建设
