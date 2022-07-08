@@ -29,10 +29,10 @@ cat << _EOF_
         -->
         \n
         \n
-        ### 📝 TODO
+        ### 📝 Attention
         \n
         \n
-        - 迁移到[slidev](sli.dev)，原因 [slidev](sli.dev) 目前不支持多文件编译和部署导出 PPT 文件功能。
+        - [Marp for VS Code](https://github.com/marp-team/marp-vscode) 迁移到 [slidev](sli.dev)。 
         \n
         ### ©opyright
         \n

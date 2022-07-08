@@ -19,7 +19,21 @@ function OL_ITEM_LIST() {
                 local HYPE_LINK_TITLE=$(echo "${REVIEW_FILENAME/"${1}/"/}" | cut -d "." -f 1);
                 REVIEW_TEMP+=" - [$HYPE_LINK_TITLE](./$REVIEW_FILENAME)\n";
             else
-                REVIEW_TEMP+=" - ["${REVIEW_FILENAME/"${1}/"/}"](./$REVIEW_FILENAME/PPT.md)\n";
+                local dir="./$REVIEW_FILENAME";
+                if [ -d $dir ] 
+                then
+                    # echo "\n Directory $dir exists. \n";
+                    if [ -e "$dir/PPT.md" ]
+                    then
+                       REVIEW_TEMP+=" - ["${REVIEW_FILENAME/"${1}/"/}"]($dir/PPT.md)\n";
+                    elif [ -e "$dir/slides.md" ]
+                    then
+                       REVIEW_TEMP+=" - ["${REVIEW_FILENAME/"${1}/"/}"]($dir/slides.md)\n";
+                    fi
+                else
+                    REVIEW_TEMP+=" - ["${REVIEW_FILENAME/"${1}/"/}"](./$REVIEW_FILENAME)\n";
+                    # echo "\n Error: Directory $dir does not exists. \n";
+                fi
             fi
         done
     echo $REVIEW_TEMP
