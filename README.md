@@ -13,6 +13,7 @@
  - [shanshu-2021-12-08-年终](./company/shanshu-2021-12-08-年终/PPT.md)
  - [shanshu-2021-7-6-年中](./company/shanshu-2021-7-6-年中/PPT.md)
  - [shanshu-2022-06-28](./company/shanshu-2022-06-28/slides.md)
+ - [shanshu-2022-07-08](./company/shanshu-2022-07-08/slides.md)
  
  ### 🧐 [share](./share) 
  
