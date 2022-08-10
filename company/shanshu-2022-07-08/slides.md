@@ -64,10 +64,19 @@ layout: section
 
 ---
 layout: image-left
-image: /test-part1-2022-08-03.png
+width: 200
+image: https://github.com/condorheroblog/review-work/assets/47056890/4d183a7d-2ed6-4f62-bd83-f6561bb59274
 ---
 
-<img border="rounded" class="w-36 ml-1/2" src="https://github.com/condorheroblog/review-work/assets/47056890/4d183a7d-2ed6-4f62-bd83-f6561bb59274" />
+<!-- <img border="rounded" class="w-36 ml-1/2" src="https://github.com/condorheroblog/review-work/assets/47056890/4d183a7d-2ed6-4f62-bd83-f6561bb59274" /> -->
+<img border="rounded" src="https://github.com/condorheroblog/review-work/assets/47056890/11293999-960b-4dd2-88ea-f8377bff8b2c" />
+<img border="rounded" src="https://github.com/condorheroblog/review-work/assets/47056890/27d7faf1-3b6d-4931-a03f-3ba527e6a515" />
+
+---
+
+# Code Time
+
+<img border="rounded" class="h-9/10" src="api-automation-frontend-20220810-174919.png" />
 
 ---
 layout: section
