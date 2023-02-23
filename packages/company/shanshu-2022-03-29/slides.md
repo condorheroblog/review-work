@@ -19,6 +19,10 @@ info: |
 # persist drawings in exports and build
 drawings:
   persist: false
+# page transition
+transition: slide-left
+# use UnoCSS
+css: unocss
 ---
 
 # CondorHero IDP

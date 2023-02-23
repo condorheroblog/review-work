@@ -10,13 +10,14 @@ set -e
 
 # generate ol
 function OL_ITEM_LIST() {
-    local REVIEW_DIRS="${1}/*";
+    local REVIEW_DIRS="packages/${1}/*";
     local REVIEW_TEMP;
     for REVIEW_FILENAME in $REVIEW_DIRS
         do
             if [[ "$1" == "share" ]]
             then
-                local HYPE_LINK_TITLE=$(echo "${REVIEW_FILENAME/"${1}/"/}" | cut -d "." -f 1);
+                local FILE_NAME=$(basename $REVIEW_FILENAME)
+                local HYPE_LINK_TITLE=$(echo $FILE_NAME | cut -d "." -f 1);
                 REVIEW_TEMP+=" - [$HYPE_LINK_TITLE](./$REVIEW_FILENAME)\n";
             else
                 local dir="./$REVIEW_FILENAME";
@@ -25,18 +26,18 @@ function OL_ITEM_LIST() {
                     # echo "\n Directory $dir exists. \n";
                     if [ -e "$dir/PPT.md" ]
                     then
-                       REVIEW_TEMP+=" - ["${REVIEW_FILENAME/"${1}/"/}"]($dir/PPT.md)\n";
+                       REVIEW_TEMP+=" - [$(basename $REVIEW_FILENAME)]($dir/PPT.md)\n";
                     elif [ -e "$dir/slides.md" ]
                     then
-                       REVIEW_TEMP+=" - ["${REVIEW_FILENAME/"${1}/"/}"]($dir/slides.md)\n";
+                       REVIEW_TEMP+=" - [$(basename $REVIEW_FILENAME)]($dir/slides.md)\n";
                     fi
                 else
-                    REVIEW_TEMP+=" - ["${REVIEW_FILENAME/"${1}/"/}"](./$REVIEW_FILENAME)\n";
+                    REVIEW_TEMP+=" - [$(basename $REVIEW_FILENAME)](./$REVIEW_FILENAME)\n";
                     # echo "\n Error: Directory $dir does not exists. \n";
                 fi
             fi
         done
-    echo $REVIEW_TEMP
+    echo $REVIEW_TEMP;
 }
 
 REVIEW_DIRS_ARR=(

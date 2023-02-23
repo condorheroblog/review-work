@@ -5,17 +5,17 @@ cat << _EOF_
 
         <p align="center">\n
             \t<p align="center">\n
-                \t\t<em>一些工作的分享、总结和思考🤔</em>\n
+                \t\t<em>一些工作的分享🤔</em>\n
             \t</p>\n
         </p>\n
         \n
-        ### 🏠 [Homepage](https://github.com/condorheroblog/review-work)
+        ### 🏠 [Work](https://github.com/condorheroblog/review-work)
         \n
         \n
         ${REVIEW_CONTENT_ARR[0]}
 
         \n
-        ### 🧐 [share](./share)
+        ### 🧐 [Share](./share)
         \n
         \n
         ${REVIEW_CONTENT_ARR[1]}

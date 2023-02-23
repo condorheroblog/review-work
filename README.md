@@ -2,25 +2,26 @@
  <h1 align="center">review-work 👋</h1>
  <p align="center">
  	<p align="center">
- 		<em>一些工作的分享、总结和思考🤔</em>
+ 		<em>一些工作的分享🤔</em>
  	</p>
  </p>
  
- ### 🏠 [Homepage](https://github.com/condorheroblog/review-work) 
+ ### 🏠 [Work](https://github.com/condorheroblog/review-work) 
  
- - [README.md](./company/README.md)
- - [idp-shanshu-2022-03-29](./company/idp-shanshu-2022-03-29/slides.md)
- - [shanshu-2021-12-08-年终](./company/shanshu-2021-12-08-年终/PPT.md)
- - [shanshu-2021-7-6-年中](./company/shanshu-2021-7-6-年中/PPT.md)
- - [shanshu-2022-06-28](./company/shanshu-2022-06-28/slides.md)
- - [shanshu-2022-07-08](./company/shanshu-2022-07-08/slides.md)
+ - [README.md](./packages/company/README.md)
+ - [shanshu-2021-12-08-year-end](./packages/company/shanshu-2021-12-08-year-end/PPT.md)
+ - [shanshu-2021-7-6-midyear](./packages/company/shanshu-2021-7-6-midyear/PPT.md)
+ - [shanshu-2022-03-29](./packages/company/shanshu-2022-03-29/slides.md)
+ - [shanshu-2022-06-28](./packages/company/shanshu-2022-06-28/slides.md)
+ - [shanshu-2022-07-08](./packages/company/shanshu-2022-07-08/slides.md)
+ - [shanshu-2022-12-19](./packages/company/shanshu-2022-12-19/slides.md)
  
  ### 🧐 [share](./share) 
  
- - [XML-JSON-YAML](./share/XML-JSON-YAML.md)
- - [YAML教程](./share/YAML教程.md)
- - [认识下ANIS，写个简版chalk](./share/认识下ANIS，写个简版chalk.md)
- - [认识下ANSI，写个简版progress](./share/认识下ANSI，写个简版progress.md)
+ - [XML-JSON-YAML](./packages/share/XML-JSON-YAML.md)
+ - [YAML教程](./packages/share/YAML教程.md)
+ - [认识下ANIS，写个简版chalk](./packages/share/认识下ANIS，写个简版chalk.md)
+ - [认识下ANSI，写个简版progress](./packages/share/认识下ANSI，写个简版progress.md)
  
  <!-- ### 🛠 Tech Stack 
  

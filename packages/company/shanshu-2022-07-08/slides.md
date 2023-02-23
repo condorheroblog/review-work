@@ -19,6 +19,10 @@ info: |
 # persist drawings in exports and build
 drawings:
   persist: false
+# page transition
+transition: slide-left
+# use UnoCSS
+css: unocss
 layout: cover
 background: https://images.unsplash.com/photo-1619075120156-f5729c752edf?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=1080&ixid=MnwxfDB8MXxyYW5kb218MHw5NDczNDU2Nnx8fHx8fHwxNjcxNDMwMDQ1&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1920
 ---

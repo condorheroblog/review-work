@@ -1,13 +1,12 @@
 {
-  "name": "idp-shanshu-2022-03-29",
   "private": true,
   "scripts": {
     "build": "slidev build",
-    "dev": "slidev --open --port=5555",
+    "dev": "slidev ./packages/company/idp-shanshu-2022-03-29/slides.md --open --port=5555",
     "export": "slidev export"
   },
   "dependencies": {
-    "@slidev/cli": "^0.29.2",
+    "@slidev/cli": "^0.40.3",
     "@slidev/theme-default": "*",
     "@slidev/theme-seriph": "*"
   }
