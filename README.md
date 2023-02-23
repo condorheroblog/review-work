@@ -14,9 +14,8 @@
  - [shanshu-2022-03-29](./packages/company/shanshu-2022-03-29/slides.md)
  - [shanshu-2022-06-28](./packages/company/shanshu-2022-06-28/slides.md)
  - [shanshu-2022-07-08](./packages/company/shanshu-2022-07-08/slides.md)
- - [shanshu-2022-12-19](./packages/company/shanshu-2022-12-19/slides.md)
  
- ### 🧐 [share](./share) 
+ ### 🧐 [Share](./share) 
  
  - [XML-JSON-YAML](./packages/share/XML-JSON-YAML.md)
  - [YAML教程](./packages/share/YAML教程.md)
