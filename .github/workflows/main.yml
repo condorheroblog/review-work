@@ -1,19 +1,49 @@
-name: Build README
-on:
-  - push
-jobs:
-  generation:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out code into the Go module directory
-        uses: actions/checkout@v3
-      - name: Execute script
-        run: bash script/auto.sh
-      - name: Commit and push if changed
-        run: | 
-          git config --local user.email "love2xinwei@gmail.com"
-          git config --local user.name "GitHub Robot"
-          git add -A
-          git commit -m "Robot: Update README.md file for generating content list" || exit 0
-          git push
+name: Build and Deploy
 
+permissions:
+  contents: write
+
+on: [push]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    if: ${{ startsWith(github.event.head_commit.message, 'deploy') }}
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v3
+
+      - name: Set env
+        run: |
+          message="${{ github.event.head_commit.message }}"
+          slide=$(echo "$message" | awk '{print $2}')
+          folder=$(echo "$message" | awk -F'[()]' '{print $2}')
+          echo "slide=$slide" >> $GITHUB_ENV
+          echo "folder=${folder:-company}" >> $GITHUB_ENV
+
+      - name: Install and Build 🔧
+        run: |
+          echo ${{ env.slide }}
+          npm install
+          if [ "${{ env.folder }}" == "share" ]; then
+            npm run build -- ./packages/share/${{ env.slide }}.md --base /review-work/${{ env.slide }}/
+          else
+            npm run build -- ./packages/company/${{ env.slide }}/slides.md --base /review-work/${{ env.slide }}/
+          fi
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: ./packages/${{ env.folder }}/${{ env.slide }}/dist
+          target-folder: ${{ env.slide }}
+          clean: false
+
+      - name: Checkout for README 🛎️
+        uses: actions/checkout@v3
+      - name: Update README
+        run: bash script/auto.sh
+      - name: Commit README changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "readme: add ${{ env.slide }} link"
+          file_pattern: README.md

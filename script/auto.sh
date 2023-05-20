@@ -11,33 +11,33 @@ set -e
 # generate ol
 function OL_ITEM_LIST() {
     local REVIEW_DIRS="packages/${1}/*";
-    local REVIEW_TEMP;
+    local REVIEW_TEMP="\n";
     for REVIEW_FILENAME in $REVIEW_DIRS
         do
             if [[ "$1" == "share" ]]
             then
                 local FILE_NAME=$(basename $REVIEW_FILENAME)
                 local HYPE_LINK_TITLE=$(echo $FILE_NAME | cut -d "." -f 1);
-                REVIEW_TEMP+=" - [$HYPE_LINK_TITLE](./$REVIEW_FILENAME)\n";
+                REVIEW_TEMP+="- [$HYPE_LINK_TITLE](./$REVIEW_FILENAME)\n";
             else
                 local dir="./$REVIEW_FILENAME";
-                if [ -d $dir ] 
+                if [ -d $dir ]
                 then
                     # echo "\n Directory $dir exists. \n";
                     if [ -e "$dir/PPT.md" ]
                     then
-                       REVIEW_TEMP+=" - [$(basename $REVIEW_FILENAME)]($dir/PPT.md)\n";
+                       REVIEW_TEMP+="- [$(basename $REVIEW_FILENAME)]($dir/PPT.md)\n";
                     elif [ -e "$dir/slides.md" ]
                     then
-                       REVIEW_TEMP+=" - [$(basename $REVIEW_FILENAME)]($dir/slides.md)\n";
+                       REVIEW_TEMP+="- [$(basename $REVIEW_FILENAME)]($dir/slides.md)\n";
                     fi
                 else
-                    REVIEW_TEMP+=" - [$(basename $REVIEW_FILENAME)](./$REVIEW_FILENAME)\n";
+                    REVIEW_TEMP+="- [$(basename $REVIEW_FILENAME)](./$REVIEW_FILENAME)\n";
                     # echo "\n Error: Directory $dir does not exists. \n";
                 fi
             fi
         done
-    echo $REVIEW_TEMP;
+    echo "$REVIEW_TEMP";
 }
 
 REVIEW_DIRS_ARR=(
@@ -66,7 +66,7 @@ for REVIEW_DIR_NAME in "${REVIEW_DIRS_ARR[@]}"
 # ${BASH_SOURCE%/*} = __dirname
 source "${BASH_SOURCE%/*}/template-readme.sh";
 
-echo -e $READMEHEAD > README.md;
+echo -e "$READMEHEAD" > README.md;
 
 CHALK_NORMAL="$(printf '\033[39m')";
 CHALK_YELLOW="$(printf '\033[93m')";
@@ -75,14 +75,10 @@ CHALK_CYAN="$(printf '\033[96m')";
 
 LOG=$(
 cat << _EOF_
-        \n
-        $CHALK_CYAN ${REVIEW_CONTENT_ARR[0]} $CHALK_NORMAL
-        \n
-        $CHALK_BLUE ${REVIEW_CONTENT_ARR[1]}  $CHALK_BLUE
-        \n
-        $CHALK_YELLOW Success！$CHALK_NORMAL
-        \n
+$CHALK_CYAN ${REVIEW_CONTENT_ARR[0]} $CHALK_NORMAL
+$CHALK_BLUE ${REVIEW_CONTENT_ARR[1]}  $CHALK_BLUE
+$CHALK_YELLOW Success！$CHALK_NORMAL
 _EOF_
 );
 
-echo -e $LOG;
+echo -e "$LOG";

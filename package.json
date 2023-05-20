@@ -1,12 +1,14 @@
 {
   "private": true,
+  "type": "module",
   "scripts": {
+    "dev": "bash script/auto.sh",
     "build": "slidev build",
-    "dev": "slidev ./packages/company/idp-shanshu-2022-03-29/slides.md --open --port=5555",
+    "slidev:dev": "slidev ./packages/company/shanshu-2022-12-19/slides.md --open --port=5555",
     "export": "slidev export"
   },
   "dependencies": {
-    "@slidev/cli": "^0.40.3",
+    "@slidev/cli": "^0.41.0",
     "@slidev/theme-default": "*",
     "@slidev/theme-seriph": "*"
   }

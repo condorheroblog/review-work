@@ -1,46 +1,23 @@
 export READMEHEAD=$(
 cat << _EOF_
-        \n
-        <h1 align="center">review-work 👋</h1>\n
+<h1 align="center">review-work 👋</h1>
+<p align="center">
+	<em>一些工作的分享🤔</em>
+</p>
 
-        <p align="center">\n
-            \t<p align="center">\n
-                \t\t<em>一些工作的分享🤔</em>\n
-            \t</p>\n
-        </p>\n
-        \n
-        ### 🏠 [Work](https://github.com/condorheroblog/review-work)
-        \n
-        \n
-        ${REVIEW_CONTENT_ARR[0]}
+### 🏠 [Work](https://github.com/condorheroblog/review-work)
+${REVIEW_CONTENT_ARR[0]}
+### 🧐 [Share](./share)
+${REVIEW_CONTENT_ARR[1]}
+### 🛠 Tech Stack
 
-        \n
-        ### 🧐 [Share](./share)
-        \n
-        \n
-        ${REVIEW_CONTENT_ARR[1]}
+- [slidev](sli.dev)
+- [Marp for VS Code](https://github.com/marp-team/marp-vscode)
 
-        \n
-        <!-- 
-        ### 🛠 Tech Stack
-        \n
-        \n
-        - [slidev](sli.dev)
-        -->
-        \n
-        \n
-        ### 📝 Attention
-        \n
-        \n
-        - [Marp for VS Code](https://github.com/marp-team/marp-vscode) 迁移到 [slidev](sli.dev)。 
-        \n
-        ### ©opyright
-        \n
-        \n
-        代码遵循 [MIT](./LICENSE) 许可
-        \n
-        文字和图像遵循 [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) 许可
-        \n
-        \n
+### ©opyright
+
+代码遵循 [MIT](./LICENSE) 许可
+文字和图像遵循 [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) 许可
+
 _EOF_
 );

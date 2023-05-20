@@ -78,12 +78,12 @@ layout: two-cols
 
 ::right::
 
-<img border="rounded" class="w-full" src="https://github.com/condorheroblog/review-work/assets/47056890/4d183a7d-2ed6-4f62-bd83-f6561bb59274" /> 
+<img border="rounded" class="w-full" src="https://github.com/condorheroblog/review-work/assets/47056890/4d183a7d-2ed6-4f62-bd83-f6561bb59274" />
 ---
 
 ## Code Time
 
-<img border="rounded" class="h-9/10" src="api-automation-frontend-20220810-174919.png" />
+<img border="rounded" class="h-9/10" src="https://github.com/condorheroblog/review-work/assets/47056890/ed47f779-2997-46d0-93a2-d27f4265c1f0" />
 
 ---
 layout: center
@@ -133,7 +133,7 @@ class: "text-center"
     v-motion
     :initial="{ x: -20, y: 200 }"
     :enter="{ x: 10 }">
-      Generate PDF => 
+      Generate PDF =>
   </div>
   <img border="rounded" src="https://github.com/condorheroblog/review-work/assets/47056890/40161f32-9716-45fd-a77c-d13a34a7bbf3" />
 </div>
