@@ -7,7 +7,7 @@ cat << _EOF_
 
 ### 🏠 [Work](https://github.com/condorheroblog/review-work)
 ${REVIEW_CONTENT_ARR[0]}
-### 🧐 [Share](./share)
+### 🧐 [Share](https://github.com/condorheroblog/review-work/tree/main/packages/share)
 ${REVIEW_CONTENT_ARR[1]}
 ### 🛠 Tech Stack
 
@@ -16,7 +16,7 @@ ${REVIEW_CONTENT_ARR[1]}
 
 ### ©opyright
 
-代码遵循 [MIT](./LICENSE) 许可
+代码遵循 [MIT](https://github.com/condorheroblog/review-work/blob/main/LICENSE) 许可
 文字和图像遵循 [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) 许可
 
 _EOF_
