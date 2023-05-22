@@ -30,7 +30,29 @@ jobs:
           else
             npm run build -- ./packages/company/${{ env.slide }}/slides.md --base /review-work/${{ env.slide }}/
           fi
-      - name: Deploy 🚀
+
+      - name: Update README
+        run: bash script/auto.sh
+
+      - name: Commit README changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "readme: add ${{ env.slide }} link"
+          file_pattern: README.md
+
+      - name: README to HTML
+        run: |
+          npm install marked --no-save
+          npx marked --no-mangle --no-header-ids -i README.md -o index.html
+          sed -e '1i\<main>' -e '$a\</main>' index.html
+          sed '1i\<style>body { display: flex; align-items: center; justify-content: center; } table { border-collapse: collapse; } td, th { border: 1px solid #d0d7de; padding: 0.5em 1em; } tr:nth-child(odd) { background-color: #f6f8fa; }</style>' index.html
+          sed '1i\<meta name="viewport" content="width=device-width, initial-scale=1.0">' index.html
+          sed '5i\<hr />' index.html
+          rm -rf temp
+          mkdir -m 755 temp
+          mv index.html temp
+
+      - name: Deploy ${{ env.slide }}🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
@@ -38,12 +60,10 @@ jobs:
           target-folder: ${{ env.slide }}
           clean: false
 
-      - name: Checkout for README 🛎️
-        uses: actions/checkout@v3
-      - name: Update README
-        run: bash script/auto.sh
-      - name: Commit README changes
-        uses: stefanzweifel/git-auto-commit-action@v4
+      - name: Deploy Index.html 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          commit_message: "readme: add ${{ env.slide }} link"
-          file_pattern: README.md
+          branch: gh-pages
+          folder: ./temp
+          target-folder: .
+          clean: false
