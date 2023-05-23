@@ -8,7 +8,7 @@
 | Title | SourceCode Link | Slides Link |
 |:---:|:---:|:---:|
 | README.md | [README.md](https://github.com/condorheroblog/review-work/tree/main/packages/company/README.md) | - |
-| shanshu-2021-12-08-year-end | [shanshu-2021-12-08-year-end](./packages/company/shanshu-2021-12-08-year-end/PPT.md) | [shanshu-2021-12-08-year-end](https://condorheroblog.github.io/review-work/shanshu-2021-12-08-year-end) |
+| shanshu-2021-12-08-year-end | [shanshu-2021-12-08-year-end](./packages/company/shanshu-2021-12-08-year-end/slides.md) | [shanshu-2021-12-08-year-end](https://condorheroblog.github.io/review-work/shanshu-2021-12-08-year-end) |
 | shanshu-2021-7-6-midyear | [shanshu-2021-7-6-midyear](./packages/company/shanshu-2021-7-6-midyear/slides.md) | [shanshu-2021-7-6-midyear](https://condorheroblog.github.io/review-work/shanshu-2021-7-6-midyear) |
 | shanshu-2022-03-29 | [shanshu-2022-03-29](./packages/company/shanshu-2022-03-29/slides.md) | [shanshu-2022-03-29](https://condorheroblog.github.io/review-work/shanshu-2022-03-29) |
 | shanshu-2022-06-28 | [shanshu-2022-06-28](./packages/company/shanshu-2022-06-28/slides.md) | [shanshu-2022-06-28](https://condorheroblog.github.io/review-work/shanshu-2022-06-28) |
