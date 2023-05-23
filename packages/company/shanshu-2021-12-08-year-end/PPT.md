@@ -24,13 +24,13 @@ style: |
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: 110px auto;
-    grid-template-areas: 
+    grid-template-areas:
         "slideheading slideheading"
         "leftpanel rightpanel";
   }
-  
-  section.column h3, 
-  section.column .ldiv, 
+
+  section.column h3,
+  section.column .ldiv,
   section.column .rdiv {
     border: 1.5pt dashed dimgray;
     padding: 0 25pt;
@@ -45,7 +45,7 @@ style: |
   section.column .rdiv { grid-area: rightpanel; }
 </style>
 
-![bg left:40% 80%](../../images/shanshu-logo.png)
+![bg left:40% 80%](https://github.com/condorheroblog/review-work/assets/47056890/162c0db7-37ef-4e62-b1cd-08229b9214c9)
 
 # 李心伟的年终考评
 
@@ -55,7 +55,7 @@ style: |
 
 目录
 
-- 第一部分 简述今年的主要工作重心 
+- 第一部分 简述今年的主要工作重心
 
 - 第二部分 做了哪些具体的事情
 
@@ -98,7 +98,7 @@ style: |
 
 1. 好丽友二期的完美交付
 2. 好丽友三期的完美交付
-3. 增加 TypeScript 
+3. 增加 TypeScript
 4. 增加单元测试
 5. code review
 

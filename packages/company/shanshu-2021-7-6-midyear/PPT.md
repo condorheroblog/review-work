@@ -26,7 +26,7 @@ style: |
   }
 </style>
 
-![bg left:40% 80%](../../images/shanshu-logo.png)
+![bg left:40% 80%](https://github.com/condorheroblog/review-work/assets/47056890/162c0db7-37ef-4e62-b1cd-08229b9214c9)
 
 # 李心伟的年中考评
 
@@ -53,8 +53,6 @@ style: |
 
 ---
 
-<!-- .slide: data-background="./images/2021-07-06 00-22-56.2021-07-06 00_29_10.gif" -->
-
 ![ali-react-table 的学习](https://github.com/condorheroblog/review-work/blob/d9aeee1/packages/company/shanshu-2021-7-6-midyear/images/2021-07-06_00_29_10.gif)
 
 ---
@@ -63,7 +61,6 @@ style: |
 
 ---
 
-<!-- .slide: data-background="https://github.com/condorheroblog/review-work/blob/d9aeee1/packages/company/shanshu-2021-7-6-midyear/images/2021-07-06_00_52_07.gif" -->
 ![bg](https://github.com/condorheroblog/review-work/blob/d9aeee1/packages/company/shanshu-2021-7-6-midyear/images/2021-07-06_00_52_07.gif)
 
 ---
@@ -74,7 +71,6 @@ style: |
 
 ---
 
-<!-- .slide: data-background="https://github.com/condorheroblog/review-work/blob/d9aeee1/packages/company/shanshu-2021-7-6-midyear/images/2021-07-06_00_54_04.gif" -->
 
 ![bg](https://github.com/condorheroblog/review-work/blob/d9aeee1/packages/company/shanshu-2021-7-6-midyear/images/2021-07-06_00_54_04.gif)
 
