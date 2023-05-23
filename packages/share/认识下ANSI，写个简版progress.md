@@ -33,7 +33,7 @@ style: |
 
 ---
 
-**背景** ：上篇 [认识下 ANIS，写个简版 chalk](https://juejin.cn/post/7031352475386904606) 我们系统的学习了 ANSI 关于颜色的知识，并简单实现了一个 [chalk](https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Fchalk%2Fchalk "https://github.com/chalk/chalk")，然而 ANSI 剩下的一大部分关于光标的我们没有讲，这次我们就来学习 ANSI 关于光标的知识，并简单的实现一个 [progress](https://www.npmjs.com/package/progress)。
+**背景** ：上篇 [认识下 ANSI，写个简版 chalk](https://juejin.cn/post/7031352475386904606) 我们系统的学习了 ANSI 关于颜色的知识，并简单实现了一个 [chalk](https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Fchalk%2Fchalk "https://github.com/chalk/chalk")，然而 ANSI 剩下的一大部分关于光标的我们没有讲，这次我们就来学习 ANSI 关于光标的知识，并简单的实现一个 [progress](https://www.npmjs.com/package/progress)。
 
 ---
 
@@ -49,7 +49,7 @@ style: |
 
 ## ANSI 光标
 
-关于 ANSI 的基本语法就不讲了，可以去看 [认识下 ANIS，写个简版 chalk](https://juejin.cn/post/7031352475386904606) 里面有非常详细的讲解，现在直接进入光标功能讲解。
+关于 ANSI 的基本语法就不讲了，可以去看 [认识下 ANSI，写个简版 chalk](https://juejin.cn/post/7031352475386904606) 里面有非常详细的讲解，现在直接进入光标功能讲解。
 
 关于光标移动操作最常见的是下面四个：
 
@@ -207,7 +207,7 @@ const barProgress = (total) => {
     // 2. 睡眠 100ms
     asyncSleep(100);
     let left = i, right = total - i, whiteSpace = "", greenSpace = "";
-    
+
     // 加载完成的空格数
     while (left) {
       greenSpace += " ";
@@ -250,7 +250,7 @@ const poundProgress = (total) => {
     // 2. 睡眠 100ms
     asyncSleep(50);
     let left = i, right = total - i, whiteSpace = "", greenSpace = "";
-    
+
     // 加载完成的空格数
     while (left) {
       greenSpace += "#";
@@ -262,7 +262,7 @@ const poundProgress = (total) => {
       whiteSpace += " ";
       right--;
     }
-    
+
     // 输出终端
     process.stderr.write(`[${greenSpace}${whiteSpace}]${i}%`);
   }
@@ -282,7 +282,7 @@ poundProgress(100);
 
 ## 总结
 
-基于上篇文章 [认识下 ANIS，写个简版 chalk](https://juejin.cn/post/7031352475386904606) 留的知识点，我们系统学习了光标的用法，并带大家实践了平时常见的加载器和 progress，行文最后推荐个基于 ANSI 实现的 npm 包，[ansi-escape-sequences](https://www.npmjs.com/package/ansi-escape-sequences#module_ansi-escape-sequences.style)。
+基于上篇文章 [认识下 ANSI，写个简版 chalk](https://juejin.cn/post/7031352475386904606) 留的知识点，我们系统学习了光标的用法，并带大家实践了平时常见的加载器和 progress，行文最后推荐个基于 ANSI 实现的 npm 包，[ansi-escape-sequences](https://www.npmjs.com/package/ansi-escape-sequences#module_ansi-escape-sequences.style)。
 
 ---
 

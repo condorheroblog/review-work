@@ -20,7 +20,7 @@
 |:---:|:---:|:---:|
 | XML-JSON-YAML | [XML-JSON-YAML](https://github.com/condorheroblog/review-work/tree/main/packages/share/XML-JSON-YAML.md) | [XML-JSON-YAML](https://condorheroblog.github.io/review-work/XML-JSON-YAML) |
 | YAML教程 | [YAML教程](https://github.com/condorheroblog/review-work/tree/main/packages/share/YAML教程.md) | [YAML教程](https://condorheroblog.github.io/review-work/YAML教程) |
-| 认识下ANIS，写个简版chalk | [认识下ANIS，写个简版chalk](https://github.com/condorheroblog/review-work/tree/main/packages/share/认识下ANIS，写个简版chalk.md) | [认识下ANIS，写个简版chalk](https://condorheroblog.github.io/review-work/认识下ANIS，写个简版chalk) |
+| 认识下ANSI，写个简版chalk | [认识下ANSI，写个简版chalk](https://github.com/condorheroblog/review-work/tree/main/packages/share/认识下ANSI，写个简版chalk.md) | [认识下ANSI，写个简版chalk](https://condorheroblog.github.io/review-work/认识下ANSI，写个简版chalk) |
 | 认识下ANSI，写个简版progress | [认识下ANSI，写个简版progress](https://github.com/condorheroblog/review-work/tree/main/packages/share/认识下ANSI，写个简版progress.md) | [认识下ANSI，写个简版progress](https://condorheroblog.github.io/review-work/认识下ANSI，写个简版progress) |
 
 ### 🛠 Tech Stack

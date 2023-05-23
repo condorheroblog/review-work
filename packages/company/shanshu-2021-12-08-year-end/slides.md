@@ -130,7 +130,7 @@ layout: section
 - 项目级
 
 	1. Redux-toolit 实践
-	2. 认识下ANIS，写个简版chalk
+	2. 认识下ANSI，写个简版chalk
 	3. 认识下ANSI，写个简版progress
 	4. YAML 教程
 	5. 等等
