@@ -27,7 +27,7 @@ jobs:
           echo ${{ env.slide }}
           npm install
           if [ "${{ env.folder }}" == "share" ]; then
-            npm run build -- ./packages/share/${{ env.slide }}.md --base /review-work/${{ env.slide }}/
+            npm run build -- ./packages/share/${{ env.slide }}.md --base /review-work/${{ env.slide }}/ --out ./${{ env.slide }}/dist
           else
             npm run build -- ./packages/company/${{ env.slide }}/slides.md --base /review-work/${{ env.slide }}/
           fi
@@ -53,7 +53,7 @@ jobs:
           mkdir -m 755 temp
           mv index.html temp
 
-      - name: Deploy ${{ env.slide }}🚀
+      - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
@@ -61,7 +61,7 @@ jobs:
           target-folder: ${{ env.slide }}
           clean: false
 
-      - name: Deploy Index.html 🚀
+      - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages

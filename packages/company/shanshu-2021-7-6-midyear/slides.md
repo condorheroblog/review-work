@@ -161,11 +161,6 @@ css: unocss
 
 ---
 
-#
-
-
-
-
 <div class="flex items-center justify-center h-full text-center">
 
 <h3>
