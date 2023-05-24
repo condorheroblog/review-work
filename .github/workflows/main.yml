@@ -14,6 +14,9 @@ jobs:
       - name: Checkout 🛎️
         uses: actions/checkout@v3
 
+      - name: Update README
+        run: bash script/auto.sh
+
       - name: Set env
         run: |
           message="${{ github.event.head_commit.message }}"
@@ -32,9 +35,6 @@ jobs:
             npm run build -- ./packages/company/${{ env.slide }}/slides.md --base /review-work/${{ env.slide }}/
           fi
 
-      - name: Update README
-        run: bash script/auto.sh
-
       - name: Commit README changes
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
@@ -49,22 +49,18 @@ jobs:
           sed -i '1i\<style>body { display: flex; align-items: center; justify-content: center; } table { border-collapse: collapse; } td, th { border: 1px solid #d0d7de; padding: 0.5em 1em; } tr:nth-child(odd) { background-color: #f6f8fa; }</style>' index.html
           sed -i '1i\<meta name="viewport" content="width=device-width, initial-scale=1.0">' index.html
           sed -i '5i\<hr />' index.html
-          rm -rf temp
-          mkdir -m 755 temp
-          mv index.html temp
 
-      - name: Deploy 🚀
+      - name: Temporary deployment directory
+        run: |
+          rm -rf temp_build
+          mkdir -m 755 temp_build
+          mv index.html temp_build
+          mv ./packages/${{ env.folder }}/${{ env.slide }}/dist temp_build/${{ env.slide }}
+
+      - name: Deploy ${{ env.slide }}🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
-          folder: ./packages/${{ env.folder }}/${{ env.slide }}/dist
-          target-folder: ${{ env.slide }}
-          clean: false
-
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          branch: gh-pages
-          folder: ./temp
+          folder: ./temp_build
           target-folder: .
           clean: false
