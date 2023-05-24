@@ -58,11 +58,6 @@
 </thead>
 <tbody><tr>
 <td align="center">XML-JSON-YAML</td>
-<td align="center"><a href="https://github.com/condorheroblog/review-work/tree/main/packages/share/XML-JSON-YAML">XML-JSON-YAML</a></td>
-<td align="center"><a href="https://condorheroblog.github.io/review-work/XML-JSON-YAML">XML-JSON-YAML</a></td>
-</tr>
-<tr>
-<td align="center">XML-JSON-YAML</td>
 <td align="center"><a href="https://github.com/condorheroblog/review-work/tree/main/packages/share/XML-JSON-YAML.md">XML-JSON-YAML</a></td>
 <td align="center"><a href="https://condorheroblog.github.io/review-work/XML-JSON-YAML">XML-JSON-YAML</a></td>
 </tr>
@@ -87,6 +82,25 @@
 <li><a href="sli.dev">slidev</a></li>
 <li><a href="https://github.com/marp-team/marp-vscode">Marp for VS Code</a></li>
 </ul>
+<h3>🧱 Guide</h3>
+<h4>Clone only the main branch.</h4>
+<pre><code class="language-bash">git clone -b main --single-branch git@github.com:condorheroblog/review-work.git
+</code></pre>
+<h4>Start a local server for Slidev</h4>
+<pre><code class="language-bash"># https://sli.dev/guide/install.html#slidev-entry
+npm run slidev:dev
+</code></pre>
+<h4>Build hostable SPA</h4>
+<pre><code class="language-bash"># https://sli.dev/guide/install.html#slidev-build-entry
+npm run slidev:build
+</code></pre>
+<h4>Commit triggers deploy</h4>
+<pre><code class="language-bash">deploy: shanshu-2021-12-08-year-end
+# ===
+deploy(company): shanshu-2021-12-08-year-end
+
+deploy(share): shanshu-2021-12-08-year-end
+</code></pre>
 <h3>©opyright</h3>
 <p>代码遵循 <a href="https://github.com/condorheroblog/review-work/blob/main/LICENSE">MIT</a> 许可
 文字和图像遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可</p>
