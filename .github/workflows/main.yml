@@ -46,7 +46,7 @@ jobs:
           npm install marked --no-save
           npx marked --no-mangle --no-header-ids -i README.md -o index.html
           sed -i -e '1i\<main>' -e '$a\</main>' index.html
-          sed -i '1i\<style>body { display: flex; align-items: center; justify-content: center; } table { border-collapse: collapse; } td, th { border: 1px solid #d0d7de; padding: 0.5em 1em; } tr:nth-child(odd) { background-color: #f6f8fa; }</style>' index.html
+          sed -i '1i\<style>body { display: flex; align-items: center; } main { margin: auto; } table { border-collapse: collapse; } td, th { border: 1px solid #d0d7de; padding: 0.5em 1em; } tr:nth-child(odd) { background-color: #f6f8fa; }</style>' index.html
           sed -i '1i\<meta name="viewport" content="width=device-width, initial-scale=1.0">' index.html
           sed -i '5i\<hr />' index.html
 
