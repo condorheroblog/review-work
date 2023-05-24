@@ -30,9 +30,9 @@ jobs:
           echo ${{ env.slide }}
           npm install
           if [ "${{ env.folder }}" == "share" ]; then
-            npm run build -- ./packages/share/${{ env.slide }}.md --base /review-work/${{ env.slide }}/ --out ./${{ env.slide }}/dist
+            npm run slidev:build -- ./packages/share/${{ env.slide }}.md --base /review-work/${{ env.slide }}/ --out ./${{ env.slide }}/dist
           else
-            npm run build -- ./packages/company/${{ env.slide }}/slides.md --base /review-work/${{ env.slide }}/
+            npm run slidev:build -- ./packages/company/${{ env.slide }}/slides.md --base /review-work/${{ env.slide }}/
           fi
 
       - name: Commit README changes

@@ -14,6 +14,38 @@ ${REVIEW_CONTENT_ARR[1]}
 - [slidev](sli.dev)
 - [Marp for VS Code](https://github.com/marp-team/marp-vscode)
 
+### 🧱 Guide
+
+#### Clone only the main branch.
+
+\`\`\`bash
+git clone -b main --single-branch git@github.com:condorheroblog/review-work.git
+\`\`\`
+
+#### Start a local server for Slidev
+
+\`\`\`bash
+# https://sli.dev/guide/install.html#slidev-entry
+npm run slidev:dev
+\`\`\`
+
+#### Build hostable SPA
+
+\`\`\`bash
+# https://sli.dev/guide/install.html#slidev-build-entry
+npm run slidev:build
+\`\`\`
+
+#### Commit triggers deploy
+
+\`\`\`bash
+deploy: shanshu-2021-12-08-year-end
+# ===
+deploy(company): shanshu-2021-12-08-year-end
+
+deploy(share): shanshu-2021-12-08-year-end
+\`\`\`
+
 ### ©opyright
 
 代码遵循 [MIT](https://github.com/condorheroblog/review-work/blob/main/LICENSE) 许可
