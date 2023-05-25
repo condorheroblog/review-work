@@ -1,30 +1,54 @@
 ---
-marp: true
-theme: gaia
-class:
-  # - lead
-  - invert
-header: "蜡笔小心"
-footer: "2021-11-18"
-paginate: true
-style: |
-  section a {
-      font-size: 30px;
-  }
-  p img {
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 50ch;
-  }
-  table {
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-  }
+# try also 'default' to start simple
+theme: seriph
+# random image from a curated Unsplash collection by Anthony
+# like them? see https://unsplash.com/collections/94734566/slidev
+# background: https://source.unsplash.com/collection/94734566/1920x1080
+background: https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/49cc3a07782b4dcbac5ad4eaa9971d30~tplv-k3u1fbpfcp-watermark.image?
+# apply any windi css classes to the current slide
+class: 'text-center'
+# https://sli.dev/custom/highlighters.html
+highlighter: shiki
+# show line numbers in code blocks
+lineNumbers: true
+# titleTemplate for the webpage, `%s` will be replaced by the page's title
+titleTemplate: 'Slidev'
+# some information about the slides, markdown enabled
+info: |
+  ## Slidev Starter Template
+  Presentation slides for developers.
+
+  Learn more at [Sli.dev](https://sli.dev)
+# persist drawings in exports and build
+drawings:
+  persist: false
+# page transition
+transition: slide-left
+# use UnoCSS
+css: unocss
 ---
 
-![bg](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/49cc3a07782b4dcbac5ad4eaa9971d30~tplv-k3u1fbpfcp-watermark.image?)
+<div class="abs-br m-6 flex gap-2">
+	<button @click="$slidev.nav.openInEditor()" title="Open in Editor" class="text-xl icon-btn opacity-50 !border-none !hover:text-white">
+		<carbon:edit />
+	</button>
+	<a href="https://github.com/condorheroblog/review-work" target="_blank" alt="GitHub"
+		class="text-xl icon-btn opacity-50 !border-none !hover:text-white">
+		<carbon-logo-github />
+	</a>
+</div>
+
+---
+class : zoom
+---
+
+<style>
+.zoom {
+	zoom: 0.75
+}
+</style>
+
+<Toc />
 
 ---
 
@@ -34,8 +58,6 @@ style: |
 
 
 ![git 分支高亮](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/29f1c673b9e24cdfad2c72eb190d7a15~tplv-k3u1fbpfcp-watermark.image?)
-
----
 
 当代码编译错误，我们会在终端收到高亮的错误提示，让我们非常直观且快速的定位到错误：
 
@@ -49,8 +71,6 @@ style: |
 
 以上是我们常看到的几个案例，不止看到过，甚至，你可能还写过它们，比如你写系统生成的日志，为了更直观的观察结果，定位问题，你会使用 [chalk](https://github.com/chalk/chalk) 或 [color](https://github.com/Qix-/color) 等这样的第三方库来标记重点信息，就像我们上面看到的几个例子那样。
 
----
-
 当你看到或用到终端输出彩色字体的时候，不知道你心中有没有闪过一丝的好奇，这到底是怎么实现的，不过要想学明白它，可有点不容易，需要你会点编码的知识，尤其是 ANSI 的知识。
 
 ASCII 你肯定听说过，ANSI 是什么东东来，别急，这就是我们接下来要带你学习的。
@@ -58,40 +78,43 @@ ASCII 你肯定听说过，ANSI 是什么东东来，别急，这就是我们接
 > 如果你对 ANSI 比较了解，可直接跳转到 「简版 chalk」章节。
 
 ---
-
-## 目录
-
-
--   什么是 ANSI 转义序列
--   ANSI 的语法
--   简版 chalk
--   应用在其他语言上
--   概述
--   参考
-
+class : zoom
 ---
 
-## 什么是 ANSI 转义序列
+<style>
+.zoom .ASCII-image {
+	zoom: 0.4
+}
+</style>
+
+<div grid="~ cols-2 gap-2" m="-t-2">
+
+<div border-1 p-3>
+
+<h2 text-center>什么是 ANSI 转义序列</h2>
 
 计算机最底层的机制是二进制，它不认识 `a、b、c、1、2、3` 等等，我们人能识别的字符，那怎么办来，简单，一个字节等于 8 位，一个字符等于一个字节，我们维护一个表，等过变动 0 或 1 的位置，让固定的二进制编码去对应我们人能识别的字符就好了，比如二进制 `0100 0001` 就对应我们的大写字母 A。
-
----
-
-![ASCII 表 w:500px ](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/26319f3778a94250b43fe962de844bbd~tplv-k3u1fbpfcp-watermark.image?)
-
----
 
 但是这样也是有问题的，因为 `2**8=256` 我们只能表示二百五十六个字符，汉字都成千上万，所以以后又出现了 Unicode、UTF-8、UTF-16（字符用两个字节或四个字节表示）和 UTF-32（字符用四个字节表示），它们之间的关系，你还可以去看阮老师的文字 [字符编码笔记：ASCII，Unicode 和 UTF-8](http://www.ruanyifeng.com/blog/2007/10/ascii_unicode_and_utf-8.html) 加深印象。
 
 到此，我们的计算机完成了，字符的展示，可是我们人类并不满足预测，为啥文字不能支持丰富的颜色、我想突出重点，文字为啥不能高亮，于是为了支持这种富文本的需求出现了 ANSI 编码。
+
+</div>
+
+<div border-1 p-3 class="ASCII-image">
+
+![ASCII 表 w:500px ](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/26319f3778a94250b43fe962de844bbd~tplv-k3u1fbpfcp-watermark.image?)
+
+</div>
+
+</div>
+
 
 ---
 
 维基百科对它的定义是：
 
 > **ANSI escape sequences** are a standard for [in-band signaling](https://en.wikipedia.org/wiki/In-band_signaling "In-band signaling") to control cursor location, color, font styling, and other options on video [text terminals](https://en.wikipedia.org/wiki/Text_terminal "Text terminal") and [terminal emulators](https://en.wikipedia.org/wiki/Terminal_emulator "Terminal emulator"). Certain sequences of [bytes](https://en.wikipedia.org/wiki/Byte "Byte"), most starting with an [ASCII escape](https://en.wikipedia.org/wiki/Escape_character#ASCII_escape_character "Escape character") character and a [bracket](https://en.wikipedia.org/wiki/Bracket "Bracket") character, are embedded into text. The terminal interprets these sequences as commands, rather than text to display verbatim.'
-
----
 
 翻译下就是：
 
@@ -104,16 +127,22 @@ ASCII 你肯定听说过，ANSI 是什么东东来，别急，这就是我们接
 这时你仔细想想，其实 ANSI 就是 ASCII 的扩展，只不过提供了额外的命令，我们可以用来改变终端的输出而已。
 
 ---
+class : zoom
+---
 
-## ANSI 的语法
+<style>
+.zoom .ASCII-image {
+	zoom: 0.4
+}
+</style>
+
+<div grid="~ cols-2 gap-2" m="-t-2">
+
+<div border-1 p-3>
+
+<h2 text-center>ANSI 的语法</h2>
 
 大部分以`ESC`[转义字符](https://zh.wikipedia.org/wiki/%E8%BD%AC%E4%B9%89%E5%AD%97%E7%AC%A6 "转义字符")和 `[` 字符开始 `m` 结束，中间为 code 码，以分号进行分割。比如：`ESC[31m`(31 表示字体红色)。但 ESC 是个字符串，不转义是不能使用的，通过 ASCII 表知道 ESC 对应的十进制值为 27，就选这个十进制作为转义的基准。
-
---- 
-
-![Esc 对应的 ASCII 值 w:25ch](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/2a0c677476644267baa4783f97afc1fc~tplv-k3u1fbpfcp-watermark.image?)
-
----
 
 现在把二十七给转换成八进制和十进制：
 
@@ -127,6 +156,16 @@ console.log(octal, hex); // 33 1b
 1. 八进制表示为 `\033`；
 2. 十六进制表示为 `\x1B`；
 3. `\u001B` 十六进制 Unicode 编码。
+
+</div>
+
+<div border-1 p-3 class="ASCII-image">
+
+![Esc 对应的 ASCII 值 w:25ch](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/2a0c677476644267baa4783f97afc1fc~tplv-k3u1fbpfcp-watermark.image?)
+
+</div>
+
+</div>
 
 ---
 
@@ -220,10 +259,10 @@ OK，现在来把八个字体颜色全部使用下：
 const colorText = (text, code, groundCode) => `\u001b[${code}m ${text} \u001b[${groundCode}m`;
 
 const result = `
-  ${colorText("A", 30, 39)} ${colorText("B", 31, 39)} ${colorText("C", 32, 39)} ${colorText("D", 33, 39)} 
+  ${colorText("A", 30, 39)} ${colorText("B", 31, 39)} ${colorText("C", 32, 39)} ${colorText("D", 33, 39)}
   ${colorText("E", 34, 39)} ${colorText("F", 35, 39)} ${colorText("G", 36, 39)} ${colorText("H", 37, 39)}
-  ${colorText("A", 40, 49)} ${colorText("B", 41, 49)} ${colorText("C", 42, 49)} ${colorText("D", 43, 49)} 
-  ${colorText("E", 44, 49)} ${colorText("F", 45, 49)} ${colorText("G", 46, 49)} ${colorText("H", 47, 49)} 
+  ${colorText("A", 40, 49)} ${colorText("B", 41, 49)} ${colorText("C", 42, 49)} ${colorText("D", 43, 49)}
+  ${colorText("E", 44, 49)} ${colorText("F", 45, 49)} ${colorText("G", 46, 49)} ${colorText("H", 47, 49)}
 `
 console.log(result);
 ```
@@ -234,7 +273,6 @@ console.log(result);
 
 ![打印出 A ~ H 对应的八种颜色](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/af9deea006e14c51907ba63ba031bdd0~tplv-k3u1fbpfcp-watermark.image?)
 
----
 
 上面我们案例，前景色和背景色都是分开使用的能不能组合在一起来，答案是可以的，不然文章开头的 npm ERR 和 WARN 如何实现的？对伐！
 
@@ -247,11 +285,11 @@ console.log(result);
 ```js
 // 诀窍：多个颜色 分号 分割
 console.log(`
-  \n
-  npm \u001b[31;40m ERROR \u001b[39;49m
-  \n
-  npm \u001b[30;43m WARN \u001b[39;49m
-  \n
+	\n
+	npm \u001b[31;40m ERROR \u001b[39;49m
+	\n
+	npm \u001b[30;43m WARN \u001b[39;49m
+	\n
 `);
 
 ```
@@ -276,10 +314,10 @@ console.log(`
 
 ```js
 console.log(`
-  \n
-  字体蓝色：\u001b[34m ERROR \u001b[39m 字体亮蓝色：\u001b[94m ERROR \u001b[39m
-  \n
-  背景：\u001b[44m WARN \u001b[49m 背景亮蓝色：\u001b[104m WARN \u001b[49m
+	\n
+	字体蓝色：\u001b[34m ERROR \u001b[39m 字体亮蓝色：\u001b[94m ERROR \u001b[39m
+	\n
+	背景：\u001b[44m WARN \u001b[49m 背景亮蓝色：\u001b[104m WARN \u001b[49m
 `);
 ```
 
@@ -298,8 +336,8 @@ wiki 有一份颜色表充分描述了各平台对十六种颜色的支持。
 
 ```js
 console.log(`
-  \n
-  字体蓝色：\u001b[34m ERROR \u001b[39m 字体亮蓝色：\u001b[94m ERROR \u001b[39m 字体加粗亮蓝色： \u001b[1;34m ERROR \u001b[22;39m
+	\n
+	字体蓝色：\u001b[34m ERROR \u001b[39m 字体亮蓝色：\u001b[94m ERROR \u001b[39m 字体加粗亮蓝色： \u001b[1;34m ERROR \u001b[22;39m
 `);
 ```
 
@@ -313,9 +351,9 @@ console.log(`
 
 ```js
 console.log(`
-  \n
-  字体蓝色：\u001b[34m ERROR \u001b[39m 字体亮蓝色：\u001b[94m ERROR \u001b[39m
-  字体加粗亮蓝色： \u001b[1;34m ERROR \u001b[22;39m 字体强度弱化： \u001b[2;34m ERROR \u001b[22;39m 
+	\n
+	字体蓝色：\u001b[34m ERROR \u001b[39m 字体亮蓝色：\u001b[94m ERROR \u001b[39m
+	字体加粗亮蓝色： \u001b[1;34m ERROR \u001b[22;39m 字体强度弱化： \u001b[2;34m ERROR \u001b[22;39m
 `);
 ```
 
@@ -331,14 +369,12 @@ console.log(`
 
 ```js
 console.log(`
-  \n
-  背景色蓝色：\u001b[44m BACKGROUND \u001b[49m 背景色亮蓝色：\u001b[104m BACKGROUND \u001b[49m
-  背景色加粗亮蓝色： \u001b[1;44m BACKGROUND \u001b[22;49m 背景色强度弱化： \u001b[2;44m BACKGROUND \u001b[22;49m 
+	\n
+	背景色蓝色：\u001b[44m BACKGROUND \u001b[49m 背景色亮蓝色：\u001b[104m BACKGROUND \u001b[49m
+	背景色加粗亮蓝色： \u001b[1;44m BACKGROUND \u001b[22;49m 背景色强度弱化： \u001b[2;44m BACKGROUND \u001b[22;49m
 `);
 
 ```
-
----
 
 运行结果：
 
@@ -352,9 +388,9 @@ console.log(`
 
 ```
 console.log(`
-  \n
-  背景色蓝色：\u001b[44m BACKGROUND \u001b[49m 
-  蓝色反向：\u001b[7;44m BACKGROUND \u001b[27;49m
+	\n
+	背景色蓝色：\u001b[44m BACKGROUND \u001b[49m
+	蓝色反向：\u001b[7;44m BACKGROUND \u001b[27;49m
 `);
 ```
 
@@ -396,15 +432,15 @@ console.log("\u001b[38;5;0m 黑色 \u001b[39m");
 ```js
 const rangeArr = (len) => Array.from({ length: len }, (_, i) => i);
 const color256 = (bg = "foreground") => rangeArr(2 ** 8).reduce((row, colorCode, colorIndex) => {
-  const bgCode = bg === "foreground" ? 3 : 4;
-  const lright = String(colorCode).padStart(3, 0);
-  const text = `\u001b[${bgCode}8;5;${colorCode}m${lright} \u001b[${bgCode}9m`;
-  if (colorIndex % 16 === 0) {
-    row += `\n ${text}`;
-  } else {
-    row += text;
-  }
-  return row;
+	const bgCode = bg === "foreground" ? 3 : 4;
+	const lright = String(colorCode).padStart(3, 0);
+	const text = `\u001b[${bgCode}8;5;${colorCode}m${lright} \u001b[${bgCode}9m`;
+	if (colorIndex % 16 === 0) {
+		row += `\n ${text}`;
+	} else {
+		row += text;
+	}
+	return row;
 }, "");
 ```
 
@@ -414,9 +450,10 @@ const color256 = (bg = "foreground") => rangeArr(2 ** 8).reduce((row, colorCode,
 console.log(color256());
 ```
 
+运行结果：
+
 ---
 
-运行结果：
 
 ![256 种前景色](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/47474e92c7344ceab8319a0d96481bf8~tplv-k3u1fbpfcp-watermark.image?)
 
@@ -430,6 +467,7 @@ console.log(color256("background"));
 
 运行结果：
 
+---
 
 ![256 种背景色 w:30ch](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/0c178d5bbe464ee58f910c05f35d28d1~tplv-k3u1fbpfcp-watermark.image?)
 
@@ -439,11 +477,11 @@ console.log(color256("background"));
 
 二十四位色即二的二十四次方等于 16777216，一共 16777216 种色。
 
-语法类似八位色，只不过中间的 5 改成了 2，n 改成了  RGB：
+语法类似八位色，只不过中间的 5 改成了 2，n 改成了	RGB：
 
 ```
-   ESC[ … 38;2;<r>;<g>;<b> … m选择RGB前景色
-   ESC[ … 48;2;<r>;<g>;<b> … m选择RGB背景色
+	 ESC[ … 38;2;<r>;<g>;<b> … m选择RGB前景色
+	 ESC[ … 48;2;<r>;<g>;<b> … m选择RGB背景色
 ```
 
 如果我们需要一个前景色品红，就应该这样写：
@@ -466,12 +504,12 @@ console.log("\u001b[38;2;255;0;255m 品红 \u001b[39m");
 const rangeArr = (len) => Array.from({ length: len }, (_, i) => i);
 const bit24 = 2 ** 24;
 for (r of rangeArr(bit24)) {
-  for (g of rangeArr(bit24)){
-    for(b of rangeArr(bit24)) {
-      const code = String(r * bit24 * bit24 + g * bit24 + b);
-      console.log(`\u001b[38;2;${r};${g};${b}m${code.padStart(3, 0)} \u001b[39m`)
-    }
-  }
+	for (g of rangeArr(bit24)){
+		for(b of rangeArr(bit24)) {
+			const code = String(r * bit24 * bit24 + g * bit24 + b);
+			console.log(`\u001b[38;2;${r};${g};${b}m${code.padStart(3, 0)} \u001b[39m`)
+		}
+	}
 }
 ```
 
@@ -519,10 +557,9 @@ console.log("\u001b[4m 下划线 \u001b[24m");
 console.log("\u001b[94;5m 缓慢闪烁 \u001b[39;25m");
 ```
 
----
-
 运行结果：
 
+![字体闪烁](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9c4374b395dd4386916484f4637d5644~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp?)
 
 ---
 
@@ -537,8 +574,6 @@ console.log("前面有字 \u001b[8m 隐藏 \u001b[28m 后面有字");
 运行结果：
 
 ![hidden](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/45c1a115dbc94d77ba96a5bcb9f069bc~tplv-k3u1fbpfcp-watermark.image?)
-
----
 
 #### 删除线
 
@@ -613,8 +648,6 @@ const red = format(31, 39);
 ```js
 console.log(red("变红！"));
 ```
-
----
 
 ### 输出结果
 
