@@ -1,49 +1,50 @@
 ---
-marp: true
-theme: gaia
-class:
-#   - lead
-  - invert
-header: "蜡笔小心"
-footer: "2021-11-18"
-paginate: true
-download: true
-style: |
-  section a {
-      font-size: 30px;
-  }
-  p img {
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 50ch;
-  }
-  table {
-    margin-top: -20px;
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  th {
-      min-width: 110px;
-  }
+# try also 'default' to start simple
+theme: seriph
+# random image from a curated Unsplash collection by Anthony
+# like them? see https://unsplash.com/collections/94734566/slidev
+# background: https://source.unsplash.com/collection/94734566/1920x1080
+background: https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/51970bd5e1134f549563732747a3f626~tplv-k3u1fbpfcp-watermark.image?
+# apply any windi css classes to the current slide
+class: 'text-center'
+# https://sli.dev/custom/highlighters.html
+highlighter: shiki
+# show line numbers in code blocks
+lineNumbers: true
+# titleTemplate for the webpage, `%s` will be replaced by the page's title
+titleTemplate: 'Slidev'
+# some information about the slides, markdown enabled
+info: |
+  ## Slidev Starter Template
+  Presentation slides for developers.
+
+  Learn more at [Sli.dev](https://sli.dev)
+# persist drawings in exports and build
+drawings:
+  persist: false
+# page transition
+transition: slide-left
+# use UnoCSS
+css: unocss
 ---
 
-![bg](https://upload-images.jianshu.io/upload_images/16069544-d00ad0a02296d3e6.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200/format/webp)
+<div class="abs-br m-6 flex gap-2">
+	<button @click="$slidev.nav.openInEditor()" title="Open in Editor" class="text-xl icon-btn opacity-50 !border-none !hover:text-white">
+		<carbon:edit />
+	</button>
+	<a href="https://github.com/condorheroblog/review-work" target="_blank" alt="GitHub"
+		class="text-xl icon-btn opacity-50 !border-none !hover:text-white">
+		<carbon-logo-github />
+	</a>
+</div>
+
+---
+
+<Toc />
 
 ---
 
 **背景** ：上篇 [认识下 ANSI，写个简版 chalk](https://juejin.cn/post/7031352475386904606) 我们系统的学习了 ANSI 关于颜色的知识，并简单实现了一个 [chalk](https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Fchalk%2Fchalk "https://github.com/chalk/chalk")，然而 ANSI 剩下的一大部分关于光标的我们没有讲，这次我们就来学习 ANSI 关于光标的知识，并简单的实现一个 [progress](https://www.npmjs.com/package/progress)。
-
----
-
-## 目录
-
--   ANSI 光标
-    -   进度指示器
--   progress 的实现
--   总结
--   参考
 
 ---
 
@@ -52,8 +53,6 @@ style: |
 关于 ANSI 的基本语法就不讲了，可以去看 [认识下 ANSI，写个简版 chalk](https://juejin.cn/post/7031352475386904606) 里面有非常详细的讲解，现在直接进入光标功能讲解。
 
 关于光标移动操作最常见的是下面四个：
-
----
 
 
 | 编码         | ANSI        | 名称                    | 作用|
@@ -64,10 +63,16 @@ style: |
 | `{n}` D | `\u001b[{n}D` |光标后移（Cursor Back）         |上同|
 
 ---
+class : zoom
+---
+
+<style>
+.zoom img {
+	zoom: 0.6
+}
+</style>
 
 为了，更好的观察光标移动的现在，我们先来个小案例热身下。在使用 Webpack 等打包工具，我们启用服务的时候，一般都会有进度指示器，从 0% ~ 100% 从而给我们个心理预期。现在就来实现它。
-
----
 
 ### 进度指示器
 
@@ -75,7 +80,7 @@ style: |
 
 ```js
 for(let i  = 0; i <= 100; i++) {
-  console.log(i);
+	console.log(i);
 }
 ```
 
@@ -92,8 +97,6 @@ for(let i  = 0; i <= 100; i++) {
 3. 以此类推
 100. 程序输出 99 结束的时候，我们应该把光标拉到行的开头，重写当前行，数字为 100。
 
----
-
 总结就两个步骤：
 
 1. 前移动光标。
@@ -108,23 +111,23 @@ for(let i  = 0; i <= 100; i++) {
 ```js
 // 同步睡眠函数
 const asyncSleep = (ms) => {
-  const startTime = Date.now();
-  let nowTime = startTime;
-  while (nowTime - startTime < ms) {
-    nowTime = Date.now();
-    continue;
-  }
+	const startTime = Date.now();
+	let nowTime = startTime;
+	while (nowTime - startTime < ms) {
+		nowTime = Date.now();
+		continue;
+	}
 }
 
 const loading = () => {
-  for(let i = 0; i <= 100; i++) {
-    asyncSleep(1000)
-    // 光标前移四格
-    process.stderr.write("\u001b[4D");
+	for(let i = 0; i <= 100; i++) {
+		asyncSleep(1000)
+		// 光标前移四格
+		process.stderr.write("\u001b[4D");
 
-    asyncSleep(1000)
-    process.stderr.write(`${i}%`);
-  }
+		asyncSleep(1000)
+		process.stderr.write(`${i}%`);
+	}
 }
 loading()
 ```
@@ -142,21 +145,27 @@ loading()
 ```js
 // 改了 loading 的代码
 const loading = () => {
-  for(let i = 0; i <= 100; i++) {
-    asyncSleep(100)
-    // 光标前移四格
-    process.stderr.write(`\u001b[4D${i}%`);
-  }
+	for(let i = 0; i <= 100; i++) {
+		asyncSleep(100)
+		// 光标前移四格
+		process.stderr.write(`\u001b[4D${i}%`);
+	}
 }
 ```
-
----
 
 看下完美的运行效果：
 
 ![2021-11-17 17-18-07.2021-11-17 17_18_36.gif w:540](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3455bc726cb44536a75386fe82bae9e0~tplv-k3u1fbpfcp-watermark.image?)
 
 ---
+class : zoom
+---
+
+<style>
+.zoom img {
+	zoom: 0.45
+}
+</style>
 
 刺激不，看到百分比在函数执行完之前从`1%`到无缝变化`100%`。
 
@@ -186,46 +195,55 @@ Wiki 上维护了一份不完整的 ANSI 控制序列列表如下，大胆的发
 好了，我们来看代码：
 
 ---
+class : zoom
+---
+
+<style>
+.zoom {
+	zoom: 0.7
+}
+</style>
+
 
 ```js
 
 // 同步延时器
 const asyncSleep = (ms) => {
-  const startTime = Date.now();
-  let nowTime = startTime;
-  while (nowTime - startTime < ms) {
-    nowTime = Date.now();
-    continue;
-  }
+	const startTime = Date.now();
+	let nowTime = startTime;
+	while (nowTime - startTime < ms) {
+		nowTime = Date.now();
+		continue;
+	}
 }
 
 const barProgress = (total) => {
-  for(let i = 0; i <= total; i++) {
-    // 1. 光标定位到行首
-    process.stderr.write(`\u001b[${total + 100}D`);
+	for(let i = 0; i <= total; i++) {
+		// 1. 光标定位到行首
+		process.stderr.write(`\u001b[${total + 100}D`);
 
-    // 2. 睡眠 100ms
-    asyncSleep(100);
-    let left = i, right = total - i, whiteSpace = "", greenSpace = "";
+		// 2. 睡眠 100ms
+		asyncSleep(100);
+		let left = i, right = total - i, whiteSpace = "", greenSpace = "";
 
-    // 加载完成的空格数
-    while (left) {
-      greenSpace += " ";
-      left--;
-    }
+		// 加载完成的空格数
+		while (left) {
+			greenSpace += " ";
+			left--;
+		}
 
-    // 未加载的空格数
-    while (right) {
-      whiteSpace += " ";
-      right--;
-    }
-    // 填充背景色
-    const leftBg = `\u001b[42m${greenSpace}\u001b[49m`;
-    const rightBg = `\u001b[47m${whiteSpace}\u001b[49m`;
+		// 未加载的空格数
+		while (right) {
+			whiteSpace += " ";
+			right--;
+		}
+		// 填充背景色
+		const leftBg = `\u001b[42m${greenSpace}\u001b[49m`;
+		const rightBg = `\u001b[47m${whiteSpace}\u001b[49m`;
 
-    // 输出终端
-    process.stderr.write(`${leftBg}${rightBg}${i}%`);
-  }
+		// 输出终端
+		process.stderr.write(`${leftBg}${rightBg}${i}%`);
+	}
 }
 
 ```
@@ -239,33 +257,42 @@ const barProgress = (total) => {
 ![2021-11-17 18-57-40.2021-11-17 18_58_34.gif](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/cbe87733a47044dab84ac7a229e66d61~tplv-k3u1fbpfcp-watermark.image?)
 
 ---
+class : zoom
+---
+
+<style>
+.zoom {
+	zoom: 0.85
+}
+</style>
+
 这个实现很简单了，去掉颜色填充，左边填充变井号，右边仍然保持空格，立刻就能见到效果。
 
 ```
 const poundProgress = (total) => {
-  for(let i = 0; i <= total; i++) {
-    // 1. 光标定位到行首
-    process.stderr.write(`\u001b[${total + 100}D`);
+	for(let i = 0; i <= total; i++) {
+		// 1. 光标定位到行首
+		process.stderr.write(`\u001b[${total + 100}D`);
 
-    // 2. 睡眠 100ms
-    asyncSleep(50);
-    let left = i, right = total - i, whiteSpace = "", greenSpace = "";
+		// 2. 睡眠 100ms
+		asyncSleep(50);
+		let left = i, right = total - i, whiteSpace = "", greenSpace = "";
 
-    // 加载完成的空格数
-    while (left) {
-      greenSpace += "#";
-      left--;
-    }
+		// 加载完成的空格数
+		while (left) {
+			greenSpace += "#";
+			left--;
+		}
 
-    // 未加载的空格数
-    while (right) {
-      whiteSpace += " ";
-      right--;
-    }
+		// 未加载的空格数
+		while (right) {
+			whiteSpace += " ";
+			right--;
+		}
 
-    // 输出终端
-    process.stderr.write(`[${greenSpace}${whiteSpace}]${i}%`);
-  }
+		// 输出终端
+		process.stderr.write(`[${greenSpace}${whiteSpace}]${i}%`);
+	}
 }
 
 poundProgress(100);
