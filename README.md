@@ -14,6 +14,7 @@
 | shanshu-2022-06-28 | [shanshu-2022-06-28](./packages/company/shanshu-2022-06-28/slides.md) | [shanshu-2022-06-28](https://condorheroblog.github.io/review-work/shanshu-2022-06-28) |
 | shanshu-2022-07-08 | [shanshu-2022-07-08](./packages/company/shanshu-2022-07-08/slides.md) | [shanshu-2022-07-08](https://condorheroblog.github.io/review-work/shanshu-2022-07-08) |
 | shanshu-2023-05-25 | [shanshu-2023-05-25](./packages/company/shanshu-2023-05-25/slides.md) | [shanshu-2023-05-25](https://condorheroblog.github.io/review-work/shanshu-2023-05-25) |
+| shanshu-2023-11-14 | [shanshu-2023-11-14](./packages/company/shanshu-2023-11-14/slides.md) | [shanshu-2023-11-14](https://condorheroblog.github.io/review-work/shanshu-2023-11-14) |
 
 ### 🧐 [Share](https://github.com/condorheroblog/review-work/tree/main/packages/share)
 
